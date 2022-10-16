@@ -213,7 +213,7 @@ usingShakeOptions :: Cleanup -> ShakeOptions -> IO ShakeOptions
 usingShakeOptions cleanup opts = do
     opts@ShakeOptions{..} <- if shakeThreads opts /= 0 then pure opts else do p <- getProcessorCount; pure opts{shakeThreads=p}
     when shakeLineBuffering $ usingLineBuffering cleanup
-    usingNumCapabilities cleanup shakeThreads
+    -- usingNumCapabilities cleanup shakeThreads
     pure opts
 
 outputFunctions :: ShakeOptions -> Lock -> (IO String -> IO (), Verbosity -> String -> IO ())
